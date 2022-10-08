@@ -25,6 +25,7 @@ jobs:
   
   Maven_Build:
     runs-on: ubuntu-latest
+    needs: [Extract_Branch]
     steps:
     - uses: actions/checkout@v3
     - name: Set up JDK 11
