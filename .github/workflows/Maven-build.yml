@@ -2,12 +2,11 @@ name: Maven Build
 
 on:
   workflow_dispatch:
-
-  workflow_call:
     inputs:
       javaversion:
         required: true
         type: number
+  workflow_call:
     outputs:
       branch_name:
         description: "Branch Name"
