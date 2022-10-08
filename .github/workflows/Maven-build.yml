@@ -2,13 +2,7 @@ name: CI
 
 on:
   workflow_dispatch:
-
-  workflow_call:
-    outputs:
-      branch_name:
-        description: "Branch Name"
-        value: ${{ jobs.Extract_Branch.outputs.branchname }}
-    
+  
 jobs:
   Extract_Branch:
     runs-on: ubuntu-latest
