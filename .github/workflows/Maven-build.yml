@@ -1,6 +1,14 @@
 name: Maven Build
 
 on:
+  workflow_dispatch:
+    inputs:
+      dev:
+        type: boolean
+        description: dev
+        required: false
+        default: false
+        
   workflow_call:
     outputs:
       branch_name:
