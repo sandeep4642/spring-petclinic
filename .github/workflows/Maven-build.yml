@@ -1,12 +1,21 @@
-name: build
-on: push
+name: Maven Build
+
+on:
+  workflow_call:
+    outputs:
+      branch_name:
+        description: "Branch Name"
+        value: ${{ jobs.Extract_Branch.outputs.branchname }}
 
 jobs:
-  build:
+  Extract_Branch:
     runs-on: ubuntu-latest
+    outputs:
+      branchname: ${{ steps.extract_branch.outputs.branch}} 
+
     steps:
-    - uses: actions/checkout@v1
-    - run: npm ci
-    - uses: nelonoel/branch-name@v1
-    # Use branch name for whatever purpose
-    - run: echo ${BRANCH_NAME}
+      - name: Extract Branch Name
+        shell: bash  
+        run: echo ##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
+  
