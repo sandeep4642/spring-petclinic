@@ -4,14 +4,15 @@ on:
   workflow_dispatch:
 
   workflow_call:
-    outputs:
-      branch_name:
-        description: "Branch Name"
-        value: ${{ jobs.Extract_Branch.outputs.branchname }}
     inputs:
       javaversion:
         required: true
         type: number
+    outputs:
+      branch_name:
+        description: "Branch Name"
+        value: ${{ jobs.Extract_Branch.outputs.branchname }}
+    
 jobs:
   Extract_Branch:
     runs-on: ubuntu-latest
@@ -23,7 +24,7 @@ jobs:
         shell: bash  
         run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
         id: extract_branch
-        
+
       - uses: actions/checkout@v3
 
       - name: Set up JDK '${{ inputs.javaversion }}'
