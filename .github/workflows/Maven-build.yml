@@ -6,9 +6,6 @@ on:
 jobs:
   Extract_Branch:
     runs-on: ubuntu-latest
-    outputs:
-      branchname: ${{ steps.extract_branch.outputs.branch}} 
-
     steps:
       - name: Extract Branch Name
         shell: bash  
